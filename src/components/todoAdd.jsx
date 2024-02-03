@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 
-const TodoAdd = (props) => {
+const TodoAdd = ({addTodo}) => {
     const [value, setValue] = useState('')
     const onChangeHandler = (e)=>{
         setValue(e.target.value)
     }
     const onClickHandler = (e)=>{
-
+        addTodo(value)
     }
     return (
         <>
