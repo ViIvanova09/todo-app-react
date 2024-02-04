@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
 
-const TodoItem = (props) => {
+const TodoItem = ({todo}) => {
     return (
         <>
-        <h1>TodoItem Components</h1>
+            <li data-id={todo.id}>
+				<span>{todo.title}</span>
+				<div className="removeTodo"><i className="far fa-trash-alt"></i></div>
+			</li>
         </>
-    )
-}
+    );
+};
 
 export default TodoItem;

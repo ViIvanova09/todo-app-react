@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
+import TodoItem from "./TodoItem";
 
-const TodoList = (props) => {
+const TodoList = ({todos}) => {
     return (
         <>
-        <h1>TodoList Components</h1>
+            {todos.map( todo => <TodoItem key={todo.id} todo={todo}/>)}
         </>
-    )
-}
+    );
+};
 
 export default TodoList;

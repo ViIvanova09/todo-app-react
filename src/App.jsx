@@ -1,30 +1,48 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
-import Header from './components/Header';
-import TodoAdd from './components/TodoAdd';
-import TodoList from './components/TodoList';
-import TodoItem from './components/TodoItem';
+import Header from "./components/Header";
+import TodoAdd from "./components/TodoAdd";
+import TodoList from "./components/TodoList";
+
+
 
 function App() {
   const [todos, setTodos] = useState([])
-  const addTodo = (title) => {
+
+  const getTodos = async ()=>{
+    const todos = await fetchTodos();
+    setTodos(todos)
+  }
+
+  const addTodo = async (title) =>{
     const newTodo = {
-      title: title,
+      title : title,
       completed: false
     }
+
+    const todo = await postTodo(newTodo);
+
+  
     setTodos([...todos, newTodo])
   }
-  const appTitle = 'Simple Todo app'
 
+
+
+
+  useEffect(()=>{
+    getTodos()
+  }, [])
+
+
+  const appTitle = 'Simple Todo App'
   return (
-      <div className="page">
-        {/* <ul className="todo-list-items"></ul>
-        <div className="todos-total">total items:<span className="output"></span></div> */}
-        <Header appTitle={appTitle}/>
-      <TodoAdd addTodo = {addTodo}/>
-      <TodoList/>
-      <TodoItem/>
+    <div className="page">
+      <Header appTitle={appTitle}/>
+      <TodoAdd addTodo={addTodo} />
+      <TodoList todos={todos}/>
     </div>
+
+
   )
 }
 
