@@ -2,7 +2,7 @@
   "todos": [
     {
       "title": "Exist in db",
-      "complated": false,
+      "completed": false,
       "id": "1"
     },
     {
